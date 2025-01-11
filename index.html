@@ -43,6 +43,12 @@
         .hidden {
             display: none;
         }
+
+        #image-container img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -64,7 +70,9 @@
         </div>
         <div id="things" class="tab-content hidden">
             <h1>Things We Did</h1>
-            <p>Relive the cherished memories and adventures we shared.</p>
+            <div id="image-container">
+                <!-- Images will be loaded here -->
+            </div>
         </div>
         <div id="contacts" class="tab-content hidden">
             <h1>Contacts</h1>
@@ -81,6 +89,29 @@
             const activeTab = document.getElementById(tabId);
             if (activeTab) {
                 activeTab.classList.remove('hidden');
+                if (tabId === 'things') {
+                    loadImages();
+                }
+            }
+        }
+
+        async function loadImages() {
+            const imageContainer = document.getElementById('image-container');
+            imageContainer.innerHTML = ''; // Clear previous images
+
+            try {
+                const response = await fetch('/images');
+                const imageFiles = await response.json(); // Assume server returns an array of image file names
+
+                imageFiles.forEach(imageFile => {
+                    const img = document.createElement('img');
+                    img.src = `/images/${imageFile}`;
+                    img.alt = 'Memory';
+                    imageContainer.appendChild(img);
+                });
+            } catch (error) {
+                console.error('Error loading images:', error);
+                imageContainer.innerHTML = '<p>Failed to load images. Please try again later.</p>';
             }
         }
 
