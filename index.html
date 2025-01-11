@@ -100,16 +100,26 @@
             imageContainer.innerHTML = ''; // Clear previous images
 
             const imagesPath = '/ddb87ab4682affffc27c7120f33b1308e7b7f80cc59a83589d1d4610ef7c375d/images/';
-            const imageFiles = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg'];
+            let imageIndex = 1;
 
-            imageFiles.forEach(imageFile => {
+            function loadNextImage() {
                 const img = document.createElement('img');
+                const imageFile = `image${imageIndex}.jpg`;
                 img.src = `${imagesPath}${imageFile}`;
                 img.alt = 'Memory';
-                img.onload = () => console.log(`Loaded: ${img.src}`);
-                img.onerror = () => console.error(`Failed to load: ${img.src}`);
-                imageContainer.appendChild(img);
-            });
+
+                img.onload = () => {
+                    imageContainer.appendChild(img);
+                    imageIndex++;
+                    loadNextImage();
+                };
+
+                img.onerror = () => {
+                    console.log(`No more images found after image${imageIndex - 1}.jpg`);
+                };
+            }
+
+            loadNextImage();
         }
 
         // Show the friendship tab by default
