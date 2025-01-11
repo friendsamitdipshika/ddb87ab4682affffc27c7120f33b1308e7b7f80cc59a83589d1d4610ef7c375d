@@ -99,18 +99,15 @@
             const imageContainer = document.getElementById('image-container');
             imageContainer.innerHTML = ''; // Clear previous images
 
-            const imageFiles = [
-                'https://drive.google.com/uc?export=view&id=1cTLpZwjtGDIRY4h8ufco1yq8JvG42GPg',
-                'https://drive.google.com/uc?export=view&id=1XEkbsl1u8Mg-h45JrpDD0V4TU0pdkMQg',
-                'https://drive.google.com/uc?export=view&id=1VYjV9GstpLfV0E09jO27XMKVgrqTiAnE',
-                'https://drive.google.com/uc?export=view&id=1AgVvPbBZTeW9pFLgB5r-SRbhGSrMMjwD',
-                'https://drive.google.com/uc?export=view&id=1LhAQLTCghrT3fp0zwHAMQTS4KdWXAuQU'
-            ];
+            const imagesPath = '/ddb87ab4682affffc27c7120f33b1308e7b7f80cc59a83589d1d4610ef7c375d/images/';
+            const imageFiles = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg'];
 
             imageFiles.forEach(imageFile => {
                 const img = document.createElement('img');
-                img.src = imageFile;
+                img.src = `${imagesPath}${imageFile}`;
                 img.alt = 'Memory';
+                img.onload = () => console.log(`Loaded: ${img.src}`);
+                img.onerror = () => console.error(`Failed to load: ${img.src}`);
                 imageContainer.appendChild(img);
             });
         }
