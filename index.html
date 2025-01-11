@@ -95,24 +95,20 @@
             }
         }
 
-        async function loadImages() {
+        function loadImages() {
             const imageContainer = document.getElementById('image-container');
             imageContainer.innerHTML = ''; // Clear previous images
 
-            try {
-                const response = await fetch('/images');
-                const imageFiles = await response.json(); // Assume server returns an array of image file names
+            const imageFiles = Array.from({ length: 10 }, (_, i) => `image${i + 1}.jpg`); // Example images: image1.jpg to image10.jpg
 
-                imageFiles.forEach(imageFile => {
-                    const img = document.createElement('img');
+            imageFiles.forEach(imageFile => {
+                const img = document.createElement('img');
+                if (imageFile.endsWith('.jpg')) { // Only add .jpg files
                     img.src = `/images/${imageFile}`;
                     img.alt = 'Memory';
                     imageContainer.appendChild(img);
-                });
-            } catch (error) {
-                console.error('Error loading images:', error);
-                imageContainer.innerHTML = '<p>Failed to load images. Please try again later.</p>';
-            }
+                }
+            });
         }
 
         // Show the friendship tab by default
