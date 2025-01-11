@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Test Page</title>
+    <title>Dipshika's Secret Website</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
         body {
@@ -34,25 +34,58 @@
         nav ul li a {
             color: white;
         }
+
+        #content {
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">Menu</a>
+            <a href="#" class="brand-logo center">Dipshika's Memories</a>
             <ul id="nav-mobile" class="left">
-                <li><a href="#find-me">Find Me</a></li>
-                <li><a href="#things-we-did">Things We Did</a></li>
-                <li><a href="#contacts">Contacts</a></li>
+                <li><a href="#find-me" onclick="showTab('friendship')">Find Me</a></li>
+                <li><a href="#things-we-did" onclick="showTab('things')">Things We Did</a></li>
+                <li><a href="#contacts" onclick="showTab('contacts')">Contacts</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="container">
-        <h1>Welcome to the Test Page</h1>
-        <p>If you see this message, the basic site is working!</p>
+    <div id="content" class="container">
+        <div id="friendship" class="tab-content hidden">
+            <h1>Friendship</h1>
+            <p>Friendship is the bond that connects hearts and souls, making life beautiful and meaningful.</p>
+        </div>
+        <div id="things" class="tab-content hidden">
+            <h1>Things We Did</h1>
+            <p>Relive the cherished memories and adventures we shared.</p>
+        </div>
+        <div id="contacts" class="tab-content hidden">
+            <h1>Contacts</h1>
+            <p>Stay in touch and keep the connection alive!</p>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.add('hidden'));
+
+            const activeTab = document.getElementById(tabId);
+            if (activeTab) {
+                activeTab.classList.remove('hidden');
+            }
+        }
+
+        // Show the friendship tab by default
+        showTab('friendship');
+    </script>
 </body>
 </html>
