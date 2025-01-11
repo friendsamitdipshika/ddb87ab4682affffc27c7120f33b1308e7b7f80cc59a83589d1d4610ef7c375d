@@ -99,15 +99,14 @@
             const imageContainer = document.getElementById('image-container');
             imageContainer.innerHTML = ''; // Clear previous images
 
-            const imageFiles = Array.from({ length: 10 }, (_, i) => `image${i + 1}.jpg`); // Example images: image1.jpg to image10.jpg
+            const imagesPath = '/images/';
+            const imageFiles = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg'];
 
             imageFiles.forEach(imageFile => {
                 const img = document.createElement('img');
-                if (imageFile.endsWith('.jpg')) { // Only add .jpg files
-                    img.src = `/images/${imageFile}`;
-                    img.alt = 'Memory';
-                    imageContainer.appendChild(img);
-                }
+                img.src = `${imagesPath}${imageFile}`;
+                img.alt = 'Memory';
+                imageContainer.appendChild(img);
             });
         }
 
