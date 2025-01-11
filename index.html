@@ -113,7 +113,7 @@
                 const response = await fetch(quotesPath);
                 if (response.ok) {
                     const data = await response.json();
-                    quotesData = data.Quotes.reduce((acc, item) => {
+                    quotesData = data.quotes.reduce((acc, item) => {
                         acc[item.imageName] = item.quote;
                         return acc;
                     }, {});
