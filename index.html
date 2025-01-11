@@ -4,25 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Test Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, pink, black, blue);
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             color: white;
-        }
-
-        h1 {
-            font-size: 2rem;
-        }
-
-        p {
-            font-size: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
         }
 
         .container {
@@ -32,13 +24,35 @@
             color: black;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        nav ul li a {
+            color: white;
         }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Menu</a>
+            <ul id="nav-mobile" class="left">
+                <li><a href="#find-me">Find Me</a></li>
+                <li><a href="#things-we-did">Things We Did</a></li>
+                <li><a href="#contacts">Contacts</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
         <h1>Welcome to the Test Page</h1>
         <p>If you see this message, the basic site is working!</p>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
